@@ -7,6 +7,8 @@ import Loading from './Loading'
 import Cast from './Cast'
 import No from './No';
 
+import Search from '../components/Search'
+
 const Home = ()=>{
     const [cast, setCast] = useState([])
   const [loading, setLoading] = useState(true)
@@ -23,10 +25,23 @@ const Home = ()=>{
     fetchCasts()
   },[])
 
+  const searchCast = async (cast)=>{
+    const result = await axios.get(`https://breakingbadapi.com/api/characters?name=${cast}`)
+    const data = await result.data 
+
+    await setCast(data)
+
+    console.log('the search relust is: '+result.data)
+  }
+
+
+
     return(
     <div className="container">
       
     <Header/>
+
+      <Search search={searchCast}/>
 
     {loading ? (
      <Loading spinner={LoadingGif}/>
