@@ -26,11 +26,12 @@ const Home = ()=>{
   },[])
 
   const searchCast = async (cast)=>{
+    await setLoading(true);
     const result = await axios.get(`https://breakingbadapi.com/api/characters?name=${cast}`)
     const data = await result.data 
 
     await setCast(data)
-
+    await setLoading(false)
     console.log('the search relust is: '+result.data)
   }
 
