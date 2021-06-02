@@ -18,7 +18,6 @@ const Single = ()=>{
       console.log(data)
       await setItem(data)
       await setLoading(false)
-    //   console.log(`cast are ${item.map(e=> e.name)}`)
     }
     fetchCasts()
     },[])
@@ -26,9 +25,9 @@ const Single = ()=>{
         <div>
             
         {loading ? <div className="container">
-            <div className="center">
-                <h3>data loading...</h3>
-                <img src={spinner} alt=""/>
+            <div className="center" >
+               
+                <img style={{marginTop:"200px"}} src={spinner} alt=""/>
             </div>
         </div>: 
         
@@ -37,7 +36,7 @@ const Single = ()=>{
              {item.length && item.map(m=>{
                  return(
                      <div key={m.char_id} className="container">
-                        <Link className="btn" to="/">Back to Home</Link>
+                        <Link style={{borderRadius:"5%"}} className="btn" to="/">Back to Home</Link>
                         <div className="dis">
                       
                          <img src={m.img} alt=""/>
@@ -60,6 +59,7 @@ const Single = ()=>{
                             <p className="item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et suscipit voluptatibus cum dignissimos eum dolor fugiat ex cumque illum, hic numquam est veritatis eveniet quis molestiae corporis neque modi nesciunt?</p>
                          </div>
                         </div>
+                        
                      </div>
                  )
              })}
@@ -73,10 +73,13 @@ const Single = ()=>{
         `
         .dis{
             display:flex;
+            max-height:100vh;
+           
         }
 
         .dis img{
             width:50%;
+           
         }
 
         .sub{
@@ -91,7 +94,22 @@ const Single = ()=>{
             margin-bottom:2px
         }
 
-          
+            
+        @media (max-width:500px){
+            .dis{
+                display:block;
+                flex-direaction: column;
+            }
+
+            .dis img{
+                text-align:center;
+                width:300px;
+
+            }
+        }
+
+        }
+
           `
       }</style>
  
